@@ -1,0 +1,5 @@
+.form-group
+    label.capitalize(for='id_topics') {{ tags.caption }}
+    tags-input(ng-model='tags.tagsModel', placeholder='{{ tags.placeholder }}', display-property='{{ tags.displayProperty }}',
+               replace-spaces-with-dashes='false')
+        auto-complete(source='tags.loadTags($query)')

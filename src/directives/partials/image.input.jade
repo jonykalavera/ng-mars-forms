@@ -1,0 +1,25 @@
+.form-group
+    label.capitalize(for='id_image') {{ imageInput.caption }}
+    .media(ng-class="{'': !form[imageInput.name].$error, 'has-errrror': (form[imageInput.name].$touched && (form[imageInput.name].$error.valid || form[imageInput.name].$error.required))}")
+        .media-body
+            img(ng-if='imageInput.imageThumbnail && !imageInput.theImageContent.b64string',
+                ng-src='{{imageInput.imageThumbnail}}', width='100', height='auto')
+
+            img(ng-if='imageInput.theImageContent.b64string', width='100', height='auto',
+                ng-src='data:image/{{imageInput.theImageContent.content_type}};base64, {{imageInput.theImageContent.b64string}}')
+
+        .media-rigth
+            p.media-heading.btn.btn-default.btn-file.pull-right
+                | {{ imageInput.browseText }}
+                // Required if creating new object
+                input#id_image.form-control(name='{{ imageInput.name }}', type='file', accept='image/*',
+                                            file-on-change='imageInput.uploadMe(files)',
+                                            ng-model='img', required, ng-if='imageInput.required')
+                input#id_image.form-control(name='{{ imageInput.name }}', type='file', accept='image/*',
+                                            file-on-change='imageInput.uploadMe(files)',
+                                            ng-model='img', ng-if='!imageInput.required')
+
+    div(ng-messages='form.image.$error')
+        div(ng-message='required', ng-if='form[imageInput.name].$error') {{ form.image.$error.message }}
+
+    span.text-muted {{ imageInput.helpText }}

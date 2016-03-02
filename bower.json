@@ -1,0 +1,23 @@
+{
+  "name": "mars-widgets",
+  "authors": [
+    "Martin Guerrero <slackmart@gmail.com>"
+  ],
+  "description": "Generic widgets for angular apps",
+  "main": "dist/mars.widgets.js",
+  "keywords": [
+    "generic-forms",
+    "angular-forms",
+    "angular-widgets"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.4.2",
+    "ng-tags-input": "~3.0.0"
+  }
+}

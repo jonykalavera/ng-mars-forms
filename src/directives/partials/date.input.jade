@@ -1,0 +1,11 @@
+label.capitalize(for='id_{{ dateInput.name }}') {{ dateInput.caption }}
+.input-group(ng-class="dateInput.getClass(form[dateInput.name], ['date'])")
+    input.form-control(name='{{ dateInput.name }}', type="date", uib-datepicker-popup="dd/MM/yyyy",
+                       ng-model="dateInput.content", is-open="dateInput._opened",
+                       min-date='dateInput.minDate()', required, show-button-bar="false")
+
+    span.input-group-btn
+      button.btn.btn-default(type="button", ng-click="dateInput.openDatepicker($event)")
+          i.glyphicon.glyphicon-calendar
+
+span.text-muted {{ dateInput.helpText }}
