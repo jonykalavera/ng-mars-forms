@@ -10,7 +10,7 @@ module.exports = function (options) {
     gulp.task('package', function () {
         //console.log(options);
         return gulp.src([options.src + '/**/module.js', options.src + '/**/*.js'])
-            .pipe($.concat('mars-widgets.js'))
+            .pipe($.concat('ng-mars-widgets.js'))
             //.pipe(gulp.dest(options.tmp + '/'))
             // This will output the non-minified version
             .pipe(gulp.dest(options.dist + '/'))
