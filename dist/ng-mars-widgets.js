@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('form.widgets', ['ngAnnotate', 'ngTagsInput']);
+    angular.module('form.widgets', ['ngTagsInput']);
 
 })();
 
