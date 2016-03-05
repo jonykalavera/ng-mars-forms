@@ -25,7 +25,9 @@
                 requires: '=requires',
                 type: '@type'
             },
-            templateUrl: 'directives/partials/text.input.html'
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/text.input.html';
+            }
         };
     }
 

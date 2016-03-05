@@ -21,7 +21,9 @@
                 content: '=ngModel',
                 dateInPast: '=dateInPast'
             },
-            templateUrl: 'directives/partials/date.input.html'
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/date.input.html';
+            }
         };
     }
 

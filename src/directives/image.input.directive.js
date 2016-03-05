@@ -46,7 +46,9 @@
                 required: '=required',
                 helpText: '@helpText'
             },
-            templateUrl: 'directives/partials/image.input.html'
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/image.input.html';
+            }
         };
     }
 

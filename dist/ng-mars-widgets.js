@@ -28,7 +28,9 @@
                 content: '=ngModel',
                 dateInPast: '=dateInPast'
             },
-            templateUrl: 'directives/partials/date.input.html'
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/date.input.html';
+            }
         };
     }
 
@@ -169,7 +171,9 @@
                 required: '=required',
                 helpText: '@helpText'
             },
-            templateUrl: 'directives/partials/image.input.html'
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/image.input.html';
+            }
         };
     }
 
@@ -275,7 +279,9 @@
         return {
             restrict: 'E',
             require: ['^form', 'ngModel'],
-            templateUrl: 'directives/partials/related.input.html',
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/related.input.html';
+            },
             bindToController: true,
             controller: RelatedInputCtrl,
             controllerAs: 'related',
@@ -343,7 +349,9 @@
             restrict: 'E',
             require: ['^form', 'ngModel'],
             bindToController: true,
-            templateUrl: 'directives/partials/tags.input.html',
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/tags.input.html';
+            },
             controller: TagsInputController,
             controllerAs: 'tags',
             scope: {
@@ -409,7 +417,9 @@
                 requires: '=requires',
                 type: '@type'
             },
-            templateUrl: 'directives/partials/text.input.html'
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/text.input.html';
+            }
         };
     }
 

@@ -58,7 +58,9 @@
         return {
             restrict: 'E',
             require: ['^form', 'ngModel'],
-            templateUrl: 'directives/partials/related.input.html',
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/related.input.html';
+            },
             bindToController: true,
             controller: RelatedInputCtrl,
             controllerAs: 'related',

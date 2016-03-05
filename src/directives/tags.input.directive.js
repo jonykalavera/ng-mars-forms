@@ -8,7 +8,9 @@
             restrict: 'E',
             require: ['^form', 'ngModel'],
             bindToController: true,
-            templateUrl: 'directives/partials/tags.input.html',
+            templateUrl: function(elem, attr) {
+                return attr.templateUrl || 'directives/partials/tags.input.html';
+            },
             controller: TagsInputController,
             controllerAs: 'tags',
             scope: {
