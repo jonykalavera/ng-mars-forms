@@ -11,7 +11,7 @@ module.exports = function (options) {
         //console.log(options);
         return gulp.src([options.src + '/**/module.js', options.src + '/**/*.js'])
             .pipe($.concat('ng-mars-widgets.js'))
-            //.pipe(gulp.dest(options.tmp + '/'))
+            .pipe(gulp.dest(options.tmp + '/'))
             // This will output the non-minified version
             .pipe(gulp.dest(options.dist + '/'))
             // This will minify and rename to foo.min.js

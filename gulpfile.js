@@ -32,11 +32,33 @@ wrench.readdirSyncRecursive('./gulp').filter(function (file) {
 });
 
 gulp.task('jade2html', function() {
-    gulp.src(options.src + '/**/*jade')
+    return gulp.src(options.src + '/**/*jade')
         .pipe(jade())
-        .pipe(gulp.dest(options.dist));
+        .pipe(gulp.dest(options.tmp));
 });
 
-gulp.task('default', ['clean', 'jade2html'], function () {
+var $ = require('gulp-load-plugins')({
+  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+});
+
+gulp.task('partials', ['jade2html'], function () {
+  return gulp.src([
+    // options.src + '/app/**/*.html',
+    options.tmp + '/directives/partials/*.html'
+  ])
+    .pipe($.minifyHtml({
+      empty: true,
+      spare: true,
+      quotes: true
+    }))
+    .pipe($.angularTemplatecache('templateCacheHtml.js', {
+      module: 'form.widgets',
+      root: 'directives/partials'
+    }))
+    .pipe(gulp.dest(options.tmp))
+    .pipe(gulp.dest(options.dist));
+});
+
+gulp.task('default', ['partials'], function () {
     gulp.start('build');
 });

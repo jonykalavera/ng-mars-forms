@@ -131,7 +131,7 @@
 
     // image input directive
     /** @ngInject */
-    function imageInputDirective($parse, imageTypes) {
+    function imageInputDirective($parse) {
         return {
             restrict: 'E',
             require: ['^form', 'ngModel'],
@@ -149,7 +149,9 @@
                     if (angular.isDefined(newV) && newV instanceof File) {
                         // Image is valid unless not in imageTypes
                         scope.form[attrs.name].$setValidity('required', true);
-                        if (imageTypes.indexOf(newV.type) === -1) {
+
+                        var normalizeExtension = angular.lowercase(newV.type);
+                        if (normalizeExtension !== 'jpg' || normalizeExtension !== 'jpeg' || normalizeExtension !== 'png') {
                             scope.form[attrs.name].$setValidity('required', false);
                             scope.form[attrs.name].$error.message = 'Invalid image';
                             imageIsValid = false;
