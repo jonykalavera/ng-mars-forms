@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('form.widgets')
+        .directive('fileOnChange', FileOnChange)
         .directive('imageInput', imageInputDirective);
 
     // image input directive
@@ -63,7 +64,7 @@
             vm.validImage = value;
         };
 
-        vm.uploadMe = function (files, field) {
+        vm.uploadMe = function(files, field) {
             if (angular.isUndefined(field)) {
                 field = 'image';
             }
@@ -79,7 +80,7 @@
                         var b64String = e.target.result.replace('data:' + vm.theImageContent.type + ';base64,', '');
                         vm.theImageContent = {
                             filename: vm.theImageContent.name, b64string: b64String,
-                            content_type: vm.theImageContent.type
+                            content_type: vm.theImageContent.type, fileSize: vm.theImageContent.size
                         };
                         $scope.$apply();
                     };
@@ -90,6 +91,18 @@
                         $scope.$apply();
                     }
                 }
+            }
+        };
+    }
+
+    /** @ngInject */
+    function FileOnChange($log, $parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs, ngModel) {
+                element.bind('change', function(event) {
+                    $parse(attrs.fileOnChange)(scope, { files: event.target.files, field: attrs.name });
+                });
             }
         };
     }

@@ -8,6 +8,7 @@
         return {
             restrict: 'E',
             require: ['^form', 'ngModel'],
+            replace: true,
             link: function(scope, element, attrs, ctrls) {
                 scope.form = ctrls[0];
             },
