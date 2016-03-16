@@ -7,7 +7,7 @@
 
     // image input directive
     /** @ngInject */
-    function imageInputDirective($parse) {
+    function imageInputDirective($parse, $log) {
         return {
             restrict: 'E',
             require: ['^form', 'ngModel'],
@@ -27,7 +27,11 @@
                         scope.form[attrs.name].$setValidity('required', true);
 
                         var normalizeExtension = angular.lowercase(newV.type);
-                        if (normalizeExtension !== 'jpg' || normalizeExtension !== 'jpeg' || normalizeExtension !== 'png') {
+                        var isNotValid = (normalizeExtension !== 'image/jpg' && normalizeExtension !== 'image/jpeg'
+                                          && normalizeExtension !== 'image/png');
+                        $log.log('ext', normalizeExtension);
+                        $log.log('is not valid?', isNotValid);
+                        if (isNotValid) {
                             scope.form[attrs.name].$setValidity('required', false);
                             scope.form[attrs.name].$error.message = 'Invalid image';
                             imageIsValid = false;
