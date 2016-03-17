@@ -242,9 +242,25 @@
     'use strict';
 
     angular.module('form.widgets')
+        .directive('scrolly', scrollyDirective)
         .directive('relatedInput', relatedInputDirective);
 
     /** ngInject */
+    function scrollyDirective($log, $parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var raw = element[0];
+                element.bind('scroll', function() {
+                    if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight) {
+                        $log.debug('loadmore...');
+                        $parse(attrs.loadMore)(scope);
+                    }
+                });
+            }
+        };
+    }
+
     function relatedInputDirective($log) {
         function deleteItems(toRemove, list) {
             var pos;
@@ -274,8 +290,22 @@
             });
             return {to: toList, from: fromList};
         }
-        function RelatedInputCtrl($scope) {
+        function RelatedInputCtrl($scope, $log, $http) {
             var vm = this;
+            vm.busy = false;
+            vm.loadMore = function() {
+                if (vm.meta.next !== null && !vm.busy) {
+                    vm.busy = true;
+                    $http.get(vm.meta.next).then(function(res) {
+                        $log.debug('More objects', res);
+                        vm.objects = vm.objects.concat(res.data.objects);
+                        vm.meta = res.data.meta;
+                        vm.busy = false;
+                    }, function(err) {
+                        $log.error('Err loading more objects', err);
+                    });
+                }
+            };
             vm.fakeContent = vm.fakeContent || [];
             vm.idField = vm.idField || 'resource_uri';
             vm.master = vm.master || [];
@@ -346,6 +376,7 @@
             },
             scope: {
                 caption: '@caption',
+                meta: '=',
                 objects: '=objects',
                 content: '=ngModel',
                 name: '@name',

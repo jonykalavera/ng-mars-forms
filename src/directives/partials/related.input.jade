@@ -6,8 +6,9 @@
     .row.form-inline.center-content(ng-if='related.multiple')
         .col-xs-5.form-group
             select.form-control(multiple, id='id_{{related.name }}_master', style='width: 100%;',
+                                scrolly, load-more='related.loadMore()',
                                 name='{{ related.name }}_master', ng-model='related.master',
-                                ng-options='item.resource_uri as item.name for item in related.objects | cleanObjects: related.content : related.idField | orderBy: ["app_label", "name"]')
+                                ng-options='item.resource_uri as item.name for item in related.objects | cleanObjects: related.content : related.idField | orderBy: ["app_label"]')
 
         .col-xs-1
             button.btn.btn-link.glyphicon.glyphicon-circle-arrow-right(ng-disabled='related.rightDisabled', style='transform:scale(1.7,1.7);')
@@ -19,6 +20,6 @@
             select.form-control(multiple, id='id_{{related.name }}', style='width: 100%;',
                                 name='{{ related.name }}', ng-model='related.fakeContent',
                                 ng-required='related.required',
-                                ng-options='item.resource_uri as item.name for item in related.content | cleanObjects: related.objects : related.idField | orderBy: ["app_label", "name"]')
+                                ng-options='item.resource_uri as item.name for item in related.content | cleanObjects: related.objects : related.idField | orderBy: ["app_label"]')
 
     span.text-muted {{ related.helpText }}
