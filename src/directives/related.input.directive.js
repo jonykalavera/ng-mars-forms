@@ -111,7 +111,8 @@
                 name: '@name',
                 helpText: '@helpText',
                 multiple: '=',
-                idField: '@'
+                idField: '@',
+                blank: '='
             }
         };
     }

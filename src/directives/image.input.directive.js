@@ -50,7 +50,7 @@
                 name: '@name',
                 imageThumbnail: '@imageThumbnail',
                 theImageContent: '=ngModel',
-                required: '=required',
+                blank: '=',
                 helpText: '@helpText'
             },
             templateUrl: function(elem, attr) {

@@ -26,7 +26,8 @@
                 helpText: '@helpText',
                 name: '@name',
                 content: '=ngModel',
-                dateInPast: '=dateInPast'
+                dateInPast: '=dateInPast',
+                blank: '='
             },
             templateUrl: function(elem, attr) {
                 return attr.templateUrl || 'directives/partials/date.input.html';
@@ -175,7 +176,7 @@
                 name: '@name',
                 imageThumbnail: '@imageThumbnail',
                 theImageContent: '=ngModel',
-                required: '=required',
+                blank: '=',
                 helpText: '@helpText'
             },
             templateUrl: function(elem, attr) {
@@ -351,7 +352,8 @@
                 name: '@name',
                 helpText: '@helpText',
                 multiple: '=',
-                idField: '@'
+                idField: '@',
+                blank: '='
             }
         };
     }
@@ -378,7 +380,8 @@
                 displayProperty: '@displayProperty',
                 placeholder: '@placeholder',
                 tagsModel: '=ngModel',
-                objects: '=objects'
+                objects: '=objects',
+                blank: '='
             }
         };
     }
@@ -424,7 +427,7 @@
                 scope.form = ctrls[0];
             },
             bindToController: true,
-            controller: InputController,
+            controller: function() {},
             controllerAs: 'textInput',
             scope: {
                 caption: '@caption',
@@ -435,6 +438,7 @@
                 content: '=ngModel',
                 regexValidator: '=regexValidator',
                 requires: '=requires',
+                blank: '=',
                 type: '@type'
             },
             templateUrl: function(elem, attr) {

@@ -18,7 +18,8 @@
                 displayProperty: '@displayProperty',
                 placeholder: '@placeholder',
                 tagsModel: '=ngModel',
-                objects: '=objects'
+                objects: '=objects',
+                blank: '='
             }
         };
     }

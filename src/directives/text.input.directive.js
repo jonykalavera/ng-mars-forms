@@ -13,7 +13,7 @@
                 scope.form = ctrls[0];
             },
             bindToController: true,
-            controller: InputController,
+            controller: function() {},
             controllerAs: 'textInput',
             scope: {
                 caption: '@caption',
@@ -24,6 +24,7 @@
                 content: '=ngModel',
                 regexValidator: '=regexValidator',
                 requires: '=requires',
+                blank: '=',
                 type: '@type'
             },
             templateUrl: function(elem, attr) {

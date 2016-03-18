@@ -1,6 +1,8 @@
 .form-group
-    label.capitalize(for='id_image') {{ imageInput.caption }}
-    .media(ng-class="{'': !form[imageInput.name].$error, 'has-errrror': (form[imageInput.name].$touched && (form[imageInput.name].$error.valid || form[imageInput.name].$error.required))}")
+    label.capitalize(for='id_image')
+        | {{ imageInput.caption }}
+        span(ng-show="!imageInput.blank") &nbsp;*
+    .media(ng-class="{'': !form[imageInput.name].$error, 'has-errrror': (form[imageInput.name].$touched && (form[imageInput.name].$error.valid || form[imageInput.name].$error.blank))}")
         .media-body
             img(ng-if='imageInput.imageThumbnail && !imageInput.theImageContent.b64string',
                 ng-src='{{imageInput.imageThumbnail}}', width='100', height='auto')
@@ -11,13 +13,9 @@
         .media-rigth
             p.media-heading.btn.btn-default.btn-file.pull-right
                 | {{ imageInput.browseText }}
-                // Required if creating new object
                 input#id_image.form-control(name='{{ imageInput.name }}', type='file', accept='image/*',
                                             file-on-change='imageInput.uploadMe(files)',
-                                            ng-model='img', required, ng-if='imageInput.required')
-                input#id_image.form-control(name='{{ imageInput.name }}', type='file', accept='image/*',
-                                            file-on-change='imageInput.uploadMe(files)',
-                                            ng-model='img', ng-if='!imageInput.required')
+                                            ng-model='img', ng-required='!imageInput.blank')
 
     div(ng-messages='form.image.$error')
         div(ng-message='required', ng-if='form[imageInput.name].$error') {{ form.image.$error.message }}

@@ -19,7 +19,8 @@
                 helpText: '@helpText',
                 name: '@name',
                 content: '=ngModel',
-                dateInPast: '=dateInPast'
+                dateInPast: '=dateInPast',
+                blank: '='
             },
             templateUrl: function(elem, attr) {
                 return attr.templateUrl || 'directives/partials/date.input.html';
