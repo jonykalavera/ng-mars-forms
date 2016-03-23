@@ -3,7 +3,7 @@
         | {{ dateInput.caption }}
         span(ng-show="!dateInput.blank") &nbsp;*
     .input-group(ng-class="dateInput.getClass(form[dateInput.name], ['date'])")
-        input.form-control(name='{{ dateInput.name }}', type="date", uib-datepicker-popup="dd/MM/yyyy",
+        input.form-control(name='{{ dateInput.name }}', type="text", uib-datepicker-popup="dd/MM/yyyy",
                            ng-model="dateInput.content", is-open="dateInput._opened",
                            min-date='dateInput.minDate()', show-button-bar="false", ng-required="!dateInput.blank")
 
