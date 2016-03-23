@@ -1,4 +1,4 @@
-.form-group(ng-class="textInput.getClass(form[textInput.name])")
+.form-group(ng-class="textInput.getClass(form[textInput.name], ['maxlength'])")
     label.capitalize(for='id_{{ textInput.name }}')
         | {{ textInput.caption }}
         span(ng-show="!textInput.blank") &nbsp;*

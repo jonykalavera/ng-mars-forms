@@ -458,11 +458,11 @@
                 scope.form = ctrls[0];
             },
             bindToController: true,
-            controller: function() {},
+            controller: InputController,
             controllerAs: 'textInput',
             scope: {
                 caption: '@caption',
-                maxLength: '@maxlength',
+                maxLength: '@',
                 textArea: '=textArea',
                 helpText: '@helpText',
                 name: '@name',
