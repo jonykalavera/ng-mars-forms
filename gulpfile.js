@@ -1,9 +1,12 @@
 'use strict';
 
 var gulp = require('gulp');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var gutil = require('gulp-util');
-var wrench = require('wrench');
+var fs = require('fs');
+var $ = require('gulp-load-plugins')({
+  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+});
 
 var options = {
     src: 'src',
@@ -21,7 +24,7 @@ var options = {
     }
 };
 
-wrench.readdirSyncRecursive('./gulp').filter(function (file) {
+fs.readdirSync('./gulp').filter(function (file) {
     return (/\.(js|coffee)$/i).test(file);
 }).map(function (file) {
     if (file === 'proxy.js') {
@@ -31,17 +34,13 @@ wrench.readdirSyncRecursive('./gulp').filter(function (file) {
     }
 });
 
-gulp.task('jade2html', function() {
-    return gulp.src(options.src + '/**/*jade')
-        .pipe(jade())
+gulp.task('pug2html', function() {
+    return gulp.src(options.src + '/**/*pug')
+        .pipe(pug())
         .pipe(gulp.dest(options.tmp));
 });
 
-var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
-});
-
-gulp.task('partials', ['jade2html'], function () {
+gulp.task('partials', ['pug2html'], function () {
   return gulp.src([
     // options.src + '/app/**/*.html',
     options.tmp + '/directives/partials/*.html'
@@ -51,7 +50,7 @@ gulp.task('partials', ['jade2html'], function () {
       spare: true,
       quotes: true
     }))
-    .pipe($.angularTemplatecache('templateCacheHtml.js', {
+    .pipe($.angularTemplatecache('ng-mars-widgets-html.templatecache.js', {
       module: 'form.widgets',
       root: 'directives/partials'
     }))

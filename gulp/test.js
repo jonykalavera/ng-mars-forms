@@ -36,7 +36,7 @@ module.exports = function (options) {
         gulp.src(srcFiles)
             .pipe(concat(function (files) {
                 callback(bowerDeps.js
-                    .concat(_.pluck(files, 'path'))
+                    .concat(_.map(files, 'path'))
                     .concat(htmlFiles)
                     .concat(specFiles));
             }));
@@ -44,17 +44,18 @@ module.exports = function (options) {
 
     function runTests(singleRun, done) {
         listFiles(function (files) {
-            karma.server.start({
+            var server = new karma.Server({
                 configFile: __dirname + '/../karma.conf.js',
                 files: files,
                 singleRun: singleRun,
                 autoWatch: !singleRun
             }, done);
+            server.start();
         });
     }
 
     gulp.task('test', ['scripts'], function (done) {
-        runTests(true, done);
+        runTests(true, function() {console.log('Great, but you can do it better ;)!');});
     });
     //gulp.task('test:auto', ['watch'], function(done) {
     //    runTests(false, done);

@@ -6,7 +6,7 @@
   "description": "Generic widgets for angular apps",
   "main": [
     "dist/ng-mars-widgets.js",
-    "dist/templateCacheHtml.js"
+    "dist/ng-mars-widgets-html.templatecache.js"
   ],
   "license": "MIT",
   "ignore": [
