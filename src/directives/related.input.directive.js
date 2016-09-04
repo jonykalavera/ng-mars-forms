@@ -5,7 +5,7 @@
         .directive('scrolly', scrollyDirective)
         .directive('relatedInput', relatedInputDirective);
 
-    /** ngInject */
+    scrollyDirective.$inject = ['$log', '$parse'];
     function scrollyDirective($log, $parse) {
         return {
             restrict: 'A',

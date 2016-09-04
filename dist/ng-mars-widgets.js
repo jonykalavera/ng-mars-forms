@@ -8,7 +8,7 @@
 (function() {
     'use strict';
     angular.module('form.widgets')
-        .directive('dateInput', dateInputDirective)
+        .directive('dateInput', dateInputDirective);
 
     // Date input directive
     function dateInputDirective() {
@@ -35,7 +35,6 @@
         };
     }
 
-    /** @ngInject */
     function InputController() {
         var vm = this;
         vm.getClass = function (element, validators) {
@@ -132,7 +131,7 @@
         .directive('imageInput', imageInputDirective);
 
     // image input directive
-    /** @ngInject */
+    imageInputDirective.$inject = ['$parse', '$log'];
     function imageInputDirective($parse, $log) {
         return {
             restrict: 'E',
@@ -153,8 +152,8 @@
                         scope.form[attrs.name].$setValidity('required', true);
 
                         var normalizeExtension = angular.lowercase(newV.type);
-                        var isNotValid = (normalizeExtension !== 'image/jpg' && normalizeExtension !== 'image/jpeg'
-                                          && normalizeExtension !== 'image/png');
+                        var isNotValid = (normalizeExtension !== 'image/jpg' && normalizeExtension !== 'image/jpeg' &&
+                                          normalizeExtension !== 'image/png');
                         $log.log('ext', normalizeExtension);
                         $log.log('is not valid?', isNotValid);
                         if (isNotValid) {
@@ -186,7 +185,7 @@
     }
 
     // image input controller
-    /** @ngInject */
+    ImageInputController.$inject = ['$scope'];
     function ImageInputController($scope) {
         var vm = this;
 
@@ -225,7 +224,7 @@
         };
     }
 
-    /** @ngInject */
+    FileOnChange.$inject = ['$log', '$parse'];
     function FileOnChange($log, $parse) {
         return {
             restrict: 'A',
@@ -246,7 +245,7 @@
         .directive('scrolly', scrollyDirective)
         .directive('relatedInput', relatedInputDirective);
 
-    /** ngInject */
+    scrollyDirective.$inject = ['$log', '$parse'];
     function scrollyDirective($log, $parse) {
         return {
             restrict: 'A',
@@ -417,7 +416,7 @@
         };
     }
 
-    /** ngInject */
+    TagsInputController.$inject = ['$scope'];
     function TagsInputController($scope) {
         var vm = this;
         vm.loadTags = function(query) {
@@ -478,7 +477,6 @@
         };
     }
 
-    /** @ngInject */
     function InputController() {
         var vm = this;
         vm.getClass = function (element, validators) {

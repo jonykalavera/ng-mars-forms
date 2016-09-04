@@ -6,7 +6,7 @@
         .directive('imageInput', imageInputDirective);
 
     // image input directive
-    /** @ngInject */
+    imageInputDirective.$inject = ['$parse', '$log'];
     function imageInputDirective($parse, $log) {
         return {
             restrict: 'E',
@@ -27,8 +27,8 @@
                         scope.form[attrs.name].$setValidity('required', true);
 
                         var normalizeExtension = angular.lowercase(newV.type);
-                        var isNotValid = (normalizeExtension !== 'image/jpg' && normalizeExtension !== 'image/jpeg'
-                                          && normalizeExtension !== 'image/png');
+                        var isNotValid = (normalizeExtension !== 'image/jpg' && normalizeExtension !== 'image/jpeg' &&
+                                          normalizeExtension !== 'image/png');
                         $log.log('ext', normalizeExtension);
                         $log.log('is not valid?', isNotValid);
                         if (isNotValid) {
@@ -60,7 +60,7 @@
     }
 
     // image input controller
-    /** @ngInject */
+    ImageInputController.$inject = ['$scope'];
     function ImageInputController($scope) {
         var vm = this;
 
@@ -99,7 +99,7 @@
         };
     }
 
-    /** @ngInject */
+    FileOnChange.$inject = ['$log', '$parse'];
     function FileOnChange($log, $parse) {
         return {
             restrict: 'A',

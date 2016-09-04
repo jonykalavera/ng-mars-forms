@@ -33,7 +33,6 @@
         };
     }
 
-    /** @ngInject */
     function InputController() {
         var vm = this;
         vm.getClass = function (element, validators) {

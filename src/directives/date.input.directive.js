@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('form.widgets')
-        .directive('dateInput', dateInputDirective)
+        .directive('dateInput', dateInputDirective);
 
     // Date input directive
     function dateInputDirective() {
@@ -28,7 +28,6 @@
         };
     }
 
-    /** @ngInject */
     function InputController() {
         var vm = this;
         vm.getClass = function (element, validators) {

@@ -24,7 +24,7 @@
         };
     }
 
-    /** ngInject */
+    TagsInputController.$inject = ['$scope'];
     function TagsInputController($scope) {
         var vm = this;
         vm.loadTags = function(query) {
