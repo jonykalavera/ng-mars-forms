@@ -1,5 +1,5 @@
 .form-group
-    label.capitalize(for='id_image')
+    label.capitalize(for='{{imageInput.id}}')
         | {{ imageInput.caption }}
         span(ng-show="!imageInput.blank") &nbsp;*
     .media(ng-class="{'': !form[imageInput.name].$error, 'has-errrror': (form[imageInput.name].$touched && (form[imageInput.name].$error.valid || form[imageInput.name].$error.blank))}")
@@ -13,7 +13,7 @@
         .media-rigth
             p.media-heading.btn.btn-default.btn-file.pull-right
                 | {{ imageInput.browseText }}
-                input#id_image.form-control(name='{{ imageInput.name }}', type='file', accept='image/*',
+                input.form-control(id="{{ imageInput.id }}", name='{{ imageInput.name }}', type='file', accept='image/*',
                                             file-on-change='imageInput.uploadMe(files)',
                                             ng-model='img', ng-required='!imageInput.blank')
 

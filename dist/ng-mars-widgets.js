@@ -176,7 +176,8 @@
                 imageThumbnail: '@imageThumbnail',
                 theImageContent: '=ngModel',
                 blank: '=',
-                helpText: '@helpText'
+                helpText: '@helpText',
+                id: '@'
             },
             templateUrl: function(elem, attr) {
                 return attr.templateUrl || 'directives/partials/image.input.html';
