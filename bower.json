@@ -4,10 +4,7 @@
     "Martin Guerrero <slackmart@gmail.com>"
   ],
   "description": "Generic widgets for angular apps",
-  "main": [
-    "dist/ng-mars-widgets.js",
-    "dist/ng-mars-widgets-html.templatecache.js"
-  ],
+  "main": "dist/ng-mars-widgets.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
